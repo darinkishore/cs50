@@ -2,6 +2,16 @@
 #include <stdio.h>
 #include <string.h>
 
+/******************************************************************
+Program Name: tideman
+Author: Darin Kishore
+Date: Completed 7/20/21
+
+Description: Computes results of ranked-choice election given
+candidate, and voting preferences of every individual voter.
+Darin desigend and implemented every method that isn't main.
+*******************************************************************/
+
 // Max number of candidates
 #define MAX 9
 
@@ -119,7 +129,7 @@ bool vote(int rank, string name, int ranks[])
     return false;
 }
 
-// Update preferences given one voter's ranks
+// Update globalpreferences given one voter's ranks
 void record_preferences(int ranks[])
 {
     for (int i = 0; i < candidate_count - 1; i++) //loop thru ranks
@@ -185,6 +195,7 @@ void print_winner(void)
     }
 }
 
+//if a column in 2d array is all zeroes, return true.
 bool colAllZeros(int col)
 {
     for (int i = 0; i < candidate_count; i++)
@@ -245,6 +256,7 @@ int compare_to(pair a, pair b)
     else return 0;
 }
 
+//"easy" implementation of recursive quicksort.
 void quick_sort(pair arr[], int left, int right)
 {
     //printArray(arr, 5);
@@ -260,6 +272,17 @@ void quick_sort(pair arr[], int left, int right)
     }
 }
 
+/****************************************************
+method: int partition
+finds and returns final location of pivot in array.
+
+Logic: two pointers, left and right. move and swap
+(basic quicksort logic) until they cross.
+when they do, return the location of the pointer
+with new, slightly more sorted array to show for it.
+
+OUTPUT: pivot loc given l/r vals.
+*****************************************************/
 int partition(pair arr[], int left, int right)
 {
     pair temp;

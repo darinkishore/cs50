@@ -2,6 +2,16 @@
 #include <math.h>
 #include <stdbool.h>
 
+/******************************************************************
+Program Name: helpers
+Author: Darin Kishore
+Date: Completed 7/23/21
+
+Description: Four different image modifying functions.
+Helper class.
+Darin implemented all methods. (but did not design program structure)
+*******************************************************************/
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -9,6 +19,8 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     {
         for(int j = 0; j < width; j++)
         {
+            //takes avg of all blue, green, red vals for any pixel and sets them
+            //all to it to implement greyscale.
             float avg = (image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed)/3.0;
             image[i][j].rgbtBlue = round(avg);
             image[i][j].rgbtGreen = round(avg);
@@ -24,6 +36,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
     {
         for(int j = 0; j < width/2; j++)
         {
+            //swap last and first pixels, for loop in array-wise.
             RGBTRIPLE temp = image[i][j];
             image[i][j] = image[i][width - j - 1];
             image[i][width - j - 1] = temp;
@@ -34,38 +47,45 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE temp[height][width]; //this is mandatory. wow, that caused a lot of problems.
+    //blur is semi-destructive, so compute all
+    //valeus for pixels first and then copy them back into og img.
+    RGBTRIPLE temp[height][width];
 
     float blue = 0;
     float green = 0;
     float red = 0;
     int curr_pixels = 0;
 
+    //iterates thru array
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
+            //faux-creates 3x3 grid of pixels via for loop
             for (int x = -1; x <= 1; x++)
             {
                 for (int y = -1; y <= 1; y++)
                 {
-                    if (i + x < 0 || i + x >= height || j + y < 0 || j + y >= width) //skips outside pixels
+                    //if is an invalid pixel (out of img bounds) skip it.
+                    if (i + x < 0 || i + x >= height || j + y < 0 || j + y >= width)
                     {
                         continue;
                     }
+                    //sums up the bgr values for later avg-ing.
                     blue += image[i + x][j + y].rgbtBlue;
                     green += image[i + x][j + y].rgbtGreen;
                     red += image[i + x][j + y].rgbtRed;
                     curr_pixels++;
                 }
             }
+            //given our fake 3x3 sqaure, update avg BGR values for blur.
             temp[i][j].rgbtBlue = round((blue / curr_pixels));
             temp[i][j].rgbtGreen = round(green / curr_pixels);
             temp[i][j].rgbtRed = round((red / curr_pixels));
             curr_pixels = blue = green = red = 0;
         }
     }
-
+    //yeah, go take care of that temp array.
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -75,11 +95,22 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     }
 }
 
-// Detect edges
+/****************************************************
+method: edges
+edge detection in image.
+
+Logic: need 9x9 pixel grid. applies kernel mult.
+for x and y (Gx/Gy) in grid, computes weighted sum of
+sobel-op modded grids.
+only modifies pixels in image. uses temp array.
+
+OUTPUT: edge dected image.
+*****************************************************/
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE temp[height][width];
 
+    //
     int gX[3][3] = {{-1,0,1}, {-2,0,2}, {-1,0,1}};
     int gY[3][3] = {{-1,-2,-1}, {0,0,0}, {1,2,1}};
     for (int i = 0; i < height; i++)

@@ -3,6 +3,23 @@
 #include <stdlib.h>
 #include <string.h>
 
+/***********************************************************
+Program Name: Credit
+Author: Darin Kishore
+Date: Submitted 7/15/21
+
+Description: Prompt user for a credit card number,
+report if (valid card), output type of card (visa, amex, etc.)
+
+Important Functions :
+turn_into_array(long num, int num_len) : changes long card
+number to array of ints.
+bool is_card_number(int num_len) : checks if card# valid.
+void classify_card() : prints card type.
+
+Global Vars : int* num, num_len | card #, # length.
+Darin desigend and implemented every method.
+************************************************************/
 
 void turn_into_array(long num, int num_len);
 string getNum(void);

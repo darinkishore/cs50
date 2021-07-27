@@ -2,6 +2,15 @@
 #include <stdio.h>
 #include <string.h>
 
+/******************************************************************
+Program Name: plurality
+Author: Darin Kishore
+Date: Finished 7/19/21
+
+Description: computes results of plurality election.
+Darin only did on vote() and print_winner().
+*******************************************************************/
+
 // Max number of candidates
 #define MAX 9
 

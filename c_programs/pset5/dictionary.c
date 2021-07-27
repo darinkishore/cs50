@@ -20,6 +20,8 @@ due to no linked-list/tree implementation.
 
 ie: this code is so simple because of how complex the hash
 function--bless the GNU developers.
+
+Darin designed and implemented all methods that aren't hash.
 ************************************************************/
 
 #ifdef __STDC_ALLOC_LIB__

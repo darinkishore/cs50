@@ -3,6 +3,15 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/******************************************************************
+Program Name: recover
+Author: Darin Kishore
+Date: Completed 7/24/21
+
+Description: Recovers series of jpgs in .raw data file.
+Darin implemented and designed all methods.
+*******************************************************************/
+
 typedef uint8_t BYTE;
 BYTE block [512];
 int filecount = 0;

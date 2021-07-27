@@ -4,15 +4,15 @@
 #include <ctype.h>
 #include <math.h>
 #include <stdlib.h>
+
 /******************************************************************
 Program Name: substitution
 Author: Darin Kishore
-Date: Started 7/18/21
-
-Definitely refactoring this one.
+Date: Finished 7/18/21
 
 Description: Given a CLI substitution key AND plaintext to encrypt,
 output an encrypted ciphertext.
+Darin desigend and implemented every method.
 *******************************************************************/
 
 bool valid_cli(int num_args);
@@ -36,6 +36,7 @@ int main(int argc, string argv[])
     string low_key = malloc(27);
     string high_key = malloc(27);
 
+    //checks if has length of valid alphabet dict.
     if (keylen == 26)
     {
         strcpy(low_key, argv[1]);
@@ -70,7 +71,8 @@ int main(int argc, string argv[])
     return 0;
 }
 
-bool valid_cli(int num_args) //checks to see if CLI arguments are acceptable.
+//checks to see if CLI arguments are acceptable.
+bool valid_cli(int num_args)
 {
     if (num_args != 2)
     {
@@ -79,16 +81,19 @@ bool valid_cli(int num_args) //checks to see if CLI arguments are acceptable.
     return true;
 }
 
+//
 bool valid_key(string low_key, int len)
 {
     for (int i = 0; i < len; i++)
     {
+        //if it has any non-alphabetical chars
         if (!isalpha(low_key[i]))
         {
             return false;
         }
 
-        if (strchr(low_key, low_key[i]) != strrchr(low_key, low_key[i])) // if first pointer (to loc) of char diff from last pointer (to loc) of char
+        // if first pointer (to loc) of char diff from last pointer (to loc) of char
+        if (strchr(low_key, low_key[i]) != strrchr(low_key, low_key[i]))
         {
             return false;
         }

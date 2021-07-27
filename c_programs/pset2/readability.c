@@ -5,21 +5,23 @@
 #include <math.h>
 
 
-/*
+/***********************************************************
 Program Name: Readability
 Author: Darin Kishore
 Date: Started 7/17/21
 
-Description: Given a string of text, output a readability level
-from <1 to >16th grade.
+Description: Given a string of text, output a
+readability level from <1 to >16th grade.
 
 Functions :
 analyze_text() : computes letter/word/sent count.
 cl_index() : computes cl_index based on global vars.
-main() : gets text to analyze, prints to cmdline based on cl_index output.
+main() : gets text to analyze, prints to cmdline based on
+cl_index output.
 
 Global Vars : letter_count, word_count, sentence_count
-*/
+Darin desigend and implemented every method.
+************************************************************/
 
 int letter_count = 0;
 int word_count = 0; //avoids loss of precision in cl_index() .
