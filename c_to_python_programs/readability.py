@@ -1,6 +1,6 @@
 """
 Readability:
-Gives reading level of text.
+Gives reading level of text using Coleman-Liau Index.
 
 Author: Darin Kishore
 Date: 7/28/21
