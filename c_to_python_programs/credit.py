@@ -1,4 +1,5 @@
-""" Credit.py checks if input is valid credit card,
+"""
+Credit.py checks if input is valid credit card,
 and outputs the type of card it is if so.
 I am very proud of this code.
 
