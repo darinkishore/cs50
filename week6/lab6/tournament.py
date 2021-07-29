@@ -27,7 +27,7 @@ def main():
     counts = defaultdict(int)
     for team in teams:
         counts.update({team.get('team'): 0})
-    # TODO: Simulate N tournaments and keep track of win counts
+    # Simulate N tournaments and keep track of win counts
     for team in range(N):
         winner = simulate_tournament(teams)
         counts[winner] = counts.get(winner) + 1
