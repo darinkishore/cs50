@@ -6,7 +6,7 @@ import random
 from collections import defaultdict
 
 # Number of simluations to run
-N = 1000
+N = 1001
 
 
 
