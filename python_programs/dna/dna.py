@@ -60,7 +60,7 @@ def update_and_sum(current_counts, sequence):
 
 
 
-def read_data(str_counts, dna_seq) -> (list[dict], str, list):
+def read_data(str_counts, dna_seq) -> (list, str, list):
     seq_counts = []
     with open(str_counts) as csvfile:
         reader = csv.DictReader(csvfile)
