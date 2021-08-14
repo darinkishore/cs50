@@ -10,8 +10,8 @@ import csv
 import sys
 import re
 
-
 # small.csv 1.txt
+
 def main():
     if len(sys.argv) != 3:
         sys.exit("Usage: python dna data.csv sequence.txt")
@@ -22,7 +22,6 @@ def main():
     current_counts = dict.fromkeys(data[2], 0)
 
     update_and_sum(current_counts, data[1])
-
     suspect = is_match(current_counts, data)
 
     if suspect:
